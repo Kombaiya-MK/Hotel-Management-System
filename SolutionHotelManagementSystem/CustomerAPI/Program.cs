@@ -1,12 +1,12 @@
-using HotelAPI.Interfaces;
-using HotelAPI.Models;
-using HotelAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using UserAPI.Interfaces;
+using UserAPI.Models;
+using UserAPI.Services;
 
-namespace HotelAPI
+namespace CustomerAPI
 {
     public class Program
     {
@@ -20,14 +20,15 @@ namespace HotelAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<HotelContext>(options =>
+            builder.Services.AddDbContext<JWTContext>(opts =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
+                opts.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
-            builder.Services.AddScoped<IRepo<Hotel , int> , HotelRepo>();
-            builder.Services.AddScoped<IRepo<Branch , int> , BranchRepo>();
-            builder.Services.AddScoped<HotelServices>();
+            builder.Services.AddScoped<IBaseRepo<string, User>, UserRepo>();
+            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<ITokenGenerate, TokenService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -48,8 +49,9 @@ namespace HotelAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.MapControllers();
 

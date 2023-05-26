@@ -1,6 +1,7 @@
 ﻿using HotelAPI.Models;
 using HotelAPI.Models.DTO;
 using HotelAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace HotelAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class HotelController : ControllerBase
     {
         private readonly HotelServices _service;
