@@ -1,4 +1,6 @@
+using BookingAPI.Interfaces;
 using BookingAPI.Models;
+using BookingAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +24,8 @@ namespace BookingAPI
             {
                 opts.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
+            builder.Services.AddScoped<IRepo<Booking,int> , BookingRepo>();
+            builder.Services.AddScoped<BookingService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
