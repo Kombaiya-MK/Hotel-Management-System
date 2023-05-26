@@ -4,7 +4,7 @@
     {
         T Get(K key);
         ICollection<T> GetAll();
-        T Add(T item);
+        bool Add(T item);
         T Delete(K key);
         bool Update(T item);    
     }

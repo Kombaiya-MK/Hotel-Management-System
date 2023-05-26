@@ -3,6 +3,7 @@ using HotelAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelAPI.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    partial class HotelContextModelSnapshot : ModelSnapshot
+    [Migration("20230526061030_Second-Migration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,12 +75,6 @@ namespace HotelAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Starting_Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("amenities")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Hotel_Id");
 
                     b.ToTable("Hotels");
@@ -88,9 +84,7 @@ namespace HotelAPI.Migrations
                         {
                             Hotel_Id = 101,
                             Branch_id = 101,
-                            Hotel_Name = "XYZ Hotel",
-                            Starting_Price = 2000.0,
-                            amenities = "AC/Non-AC"
+                            Hotel_Name = "XYZ Hotel"
                         });
                 });
 #pragma warning restore 612, 618
