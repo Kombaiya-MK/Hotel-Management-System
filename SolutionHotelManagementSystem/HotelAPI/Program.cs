@@ -1,4 +1,6 @@
+using HotelAPI.Interfaces;
 using HotelAPI.Models;
+using HotelAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelAPI
@@ -20,6 +22,9 @@ namespace HotelAPI
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
+            builder.Services.AddScoped<IRepo<Hotel , int> , HotelRepo>();
+            builder.Services.AddScoped<IRepo<Branch , int> , BranchRepo>();
+            builder.Services.AddScoped<HotelServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

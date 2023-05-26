@@ -93,6 +93,8 @@ namespace HotelAPI.Services
             {
                 hotel.Hotel_Name = item.Hotel_Name;
                 hotel.Branch_id  = item.Branch_id;
+                hotel.amenities = item.amenities;
+                hotel.Starting_Price = item.Starting_Price;
                 _hotels.SaveChanges();
                 status = true;  
             }
