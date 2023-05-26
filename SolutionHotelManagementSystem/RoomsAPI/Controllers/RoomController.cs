@@ -8,7 +8,7 @@ namespace RoomsAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RoomController : ControllerBase
     {
         private readonly RoomService _service;
