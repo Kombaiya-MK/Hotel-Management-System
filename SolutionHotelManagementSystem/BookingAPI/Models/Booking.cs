@@ -9,6 +9,5 @@
         public int NumOfDays { get; set; }
         public double? TotalAmount { get; set; }
 
-
     }
 }

@@ -48,6 +48,7 @@ namespace RoomsAPI
             }
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
 
             app.MapControllers();
