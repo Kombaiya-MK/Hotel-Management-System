@@ -80,6 +80,11 @@ namespace HotelAPI.Services
             return _hotels.Hotels.ToList();
         }
 
+        public object GetAllHotels()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Method for updating hotel information
         /// </summary>

@@ -12,6 +12,6 @@
         ICollection<T> GetAll();
         bool Add(T item);
         T Delete(K key);
-        bool Update(T item);    
+        bool Update(T item);
     }
 }

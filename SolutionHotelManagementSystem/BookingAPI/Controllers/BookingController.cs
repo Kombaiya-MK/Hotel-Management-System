@@ -19,7 +19,6 @@ namespace BookingAPI.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<Booking>> GetAllBooking()
         {
@@ -49,7 +48,6 @@ namespace BookingAPI.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<Booking>> GetBookingsOnHotels(int id)
         {
@@ -64,7 +62,6 @@ namespace BookingAPI.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<Booking>> GetBooking(int id)
         {
@@ -79,7 +76,6 @@ namespace BookingAPI.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<bool> AddBooking([FromBody] Booking Booking)
         {
