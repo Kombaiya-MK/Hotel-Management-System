@@ -9,5 +9,7 @@
         public int NumOfDays { get; set; }
         public double? TotalAmount { get; set; }
 
+        public string BookingDate { get; set; }
+
     }
 }

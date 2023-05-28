@@ -8,7 +8,7 @@ namespace RoomsAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RoomController : ControllerBase
     {
         private readonly RoomService _service;
@@ -18,7 +18,7 @@ namespace RoomsAPI.Controllers
             _service = service;
         }
 
-
+        
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -64,7 +64,7 @@ namespace RoomsAPI.Controllers
             return Ok(rooms);
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -80,6 +80,7 @@ namespace RoomsAPI.Controllers
             return BadRequest("Duplicate data are not allowed");
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -96,6 +97,7 @@ namespace RoomsAPI.Controllers
         }
 
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

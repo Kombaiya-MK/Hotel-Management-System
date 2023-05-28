@@ -17,7 +17,8 @@ namespace BookingAPI.Models
                 BookingId = 101,
                 HotelID = 101,
                 RoomId = 102,
-                NumOfDays = 1
+                NumOfDays = 1,
+                BookingDate = DateTime.Now.ToString()
             });
         }
     }

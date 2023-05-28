@@ -33,7 +33,6 @@ namespace BookingAPI.Services
             var bookings = _repo.GetAll();
             return bookings.Where(x => x.UserId == id).ToList();
         }
-
         /// <summary>
         /// Method to get all bookings
         /// </summary>

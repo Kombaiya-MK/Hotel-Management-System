@@ -1,5 +1,6 @@
 ﻿using BookingAPI.Models;
 using BookingAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace BookingAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class BookingController : ControllerBase
     {
         private readonly BookingService _service;
@@ -16,6 +18,7 @@ namespace BookingAPI.Controllers
             _service = services;
         }
 
+        
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,6 +38,8 @@ namespace BookingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+        [Authorize(Roles ="admin")]
         public ActionResult<ICollection<Booking>> GetBookingsOnUser(int id)
         {
             var Bookings = _service.GetBookingOnUser(id);
@@ -45,6 +50,7 @@ namespace BookingAPI.Controllers
             return Ok(Bookings);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -59,6 +65,7 @@ namespace BookingAPI.Controllers
             return Ok(Bookings);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

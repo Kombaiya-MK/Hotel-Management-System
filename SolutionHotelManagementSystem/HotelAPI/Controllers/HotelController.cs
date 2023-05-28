@@ -9,7 +9,7 @@ namespace HotelAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class HotelController : ControllerBase
     {
         private readonly HotelServices _service;
@@ -64,6 +64,7 @@ namespace HotelAPI.Controllers
             return Ok(hotels);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<HotelDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -79,6 +80,7 @@ namespace HotelAPI.Controllers
             return Ok(hotel);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ProducesResponseType(typeof(ICollection<HotelDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -92,6 +94,39 @@ namespace HotelAPI.Controllers
                 return Ok(hotel);
             }
             return BadRequest("Duplicate data are not allowed");
+        }
+
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        [ProducesResponseType(typeof(ICollection<HotelDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<bool> RemoveHotel([FromBody] Hotel hotel)
+        {
+            bool status = _service.RemoveHotel(hotel.Hotel_Id) != null;
+            if (status)
+            {
+                return Ok(hotel);
+            }
+            return BadRequest("No data available to delete");
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        [ProducesResponseType(typeof(ICollection<HotelDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<bool> UpdateHotel([FromBody] Hotel hotel)
+        {
+            bool status = _service.UpdateHotels(hotel);
+            if (status)
+            {
+                return Ok(hotel);
+            }
+            return BadRequest("data updation failed");
         }
     }
 }
