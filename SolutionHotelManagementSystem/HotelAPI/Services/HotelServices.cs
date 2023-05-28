@@ -148,7 +148,7 @@ namespace HotelAPI.Services
         /// <returns></returns>
         public ICollection<HotelDTO> GetHotelInPriceRange(int maxprice , int minprice)
         {
-            return GetAllHotelsDetails().Where(h => h.starting_price == maxprice && h.starting_price == minprice).ToList();
+            return GetAllHotelsDetails().Where(h => h.starting_price <= maxprice && h.starting_price >= minprice).ToList();
         }
 
 

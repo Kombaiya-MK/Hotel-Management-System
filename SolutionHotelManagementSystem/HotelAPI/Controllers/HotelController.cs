@@ -42,6 +42,8 @@ namespace HotelAPI.Controllers
         public ActionResult<ICollection<HotelDTO>> GetHotelsOnPrice(int max , int min )
         {
             var hotels = _service.GetHotelInPriceRange(max,min);
+            if (max > 0 || min < 0)
+                return BadRequest("Invalid Input");
             if (hotels.Count == 0)
             {
                 return NotFound("No hotels available");
@@ -72,6 +74,10 @@ namespace HotelAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<HotelDTO>> GetHotel(int id)
         {
+
+            if (id == 0)
+                return BadRequest("Invalid Id");
+
             var hotel = _service.GetHotel(id);
             if (hotel == null)
             {

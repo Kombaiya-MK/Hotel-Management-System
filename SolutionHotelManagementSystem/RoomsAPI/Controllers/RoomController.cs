@@ -26,6 +26,9 @@ namespace RoomsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<Room>> GetAvailableRooms(int id)
         {
+
+            if (id == 0)
+                return BadRequest("Invalid Id");
             var rooms = _service.GetAvailableRooms(id);
             if (rooms.Count == 0)
             {
@@ -41,6 +44,8 @@ namespace RoomsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<Room>> GetallRoomsUnderHotel(int id)
         {
+            if (id == 0)
+                return BadRequest("Invalid Id");
             var rooms = _service.GetRoomsUnderHotel(id);
             if (rooms.Count == 0)
             {

@@ -43,6 +43,10 @@ namespace BookingAPI.Controllers
         public ActionResult<ICollection<Booking>> GetBookingsOnUser(int id)
         {
             var Bookings = _service.GetBookingOnUser(id);
+            if(id == 0)
+            {
+                return BadRequest("Invalid Id");
+            }
             if (Bookings.Count == 0)
             {
                 return NotFound("No Bookings available");
@@ -58,6 +62,10 @@ namespace BookingAPI.Controllers
         public ActionResult<ICollection<Booking>> GetBookingsOnHotels(int id)
         {
             var Bookings = _service.GetBookingOnUser(id);
+            if(id == 0)
+            {
+                return BadRequest("Invalid Id");
+            }
             if (Bookings.Count == 0)
             {
                 return NotFound("No Bookings available");
@@ -72,6 +80,9 @@ namespace BookingAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ICollection<Booking>> GetBooking(int id)
         {
+
+            if (id == 0)
+                return BadRequest("Invalid Id");
             var booking = _service.GetBooking(id);
             if (booking == null)
             {

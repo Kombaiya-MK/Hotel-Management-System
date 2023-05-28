@@ -60,7 +60,6 @@ namespace BookingAPI
                                  }
                              },
                              new string[] {}
-
                      }
                  });
             });
@@ -73,8 +72,9 @@ namespace BookingAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+            
 
 
             app.MapControllers();
