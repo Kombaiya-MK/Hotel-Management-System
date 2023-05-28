@@ -30,14 +30,23 @@ namespace RoomsAPI.Services
         public Room Delete(int key)
         {
             var room = Get(key);
-            _rooms.Rooms.Remove(room);
-            _rooms.SaveChanges();
+            try
+            {
+                _rooms.Rooms.Remove(room);
+                _rooms.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
             return room;
         }
 
         public Room Get(int key)
         {
             var room = _rooms.Rooms.FirstOrDefault(r => r.RoomID == key);
+            if (room == null)
+                return null;
             return room;
         }
 

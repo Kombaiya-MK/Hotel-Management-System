@@ -10,21 +10,11 @@ namespace HotelAPI.Services
     public class HotelRepo : IRepo<Hotel, int> // Implements the IRepo
     {
         private readonly HotelContext _hotels;
-
-        /// <summary>
-        /// Dependency Injection(Hotel Repo)
-        /// </summary>
-        /// <param name="context"></param>
         public HotelRepo(HotelContext context)
         {
             _hotels = context;
         }
 
-        /// <summary>
-        /// Method for Adding hotels info
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
         public bool Add(Hotel item)
         {
             bool  status = false;
@@ -40,12 +30,6 @@ namespace HotelAPI.Services
             }
             return status;
         }
-
-        /// <summary>
-        /// Method for deleting the hotel info
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
         public Hotel Delete(int key)
         {
             var hotel = Get(key);
@@ -57,11 +41,6 @@ namespace HotelAPI.Services
             }
             return null;
         }
-        /// <summary>
-        ///Method for Get hotels details with id
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
         public Hotel Get(int key)
         {
             var hotel = _hotels.Hotels.FirstOrDefault(h => h.Hotel_Id == key);
@@ -78,11 +57,6 @@ namespace HotelAPI.Services
         public ICollection<Hotel> GetAll()
         {
             return _hotels.Hotels.ToList();
-        }
-
-        public object GetAllHotels()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

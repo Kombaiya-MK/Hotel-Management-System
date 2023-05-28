@@ -18,19 +18,22 @@ namespace UserAPI.Services
             {
                 _context.Users.Add(item);
                 _context.SaveChanges();
-                return item;
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
                 Debug.WriteLine(item);
             }
-            return null;
+            return item;
         }
 
         public User Get(string key)
         {
             var user = _context.Users.FirstOrDefault(u => u.UserName == key);
+            if (user == null)
+            {
+                return null;
+            }
             return user;
         }
 

@@ -39,7 +39,7 @@ namespace RoomsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<ICollection<Room>> GetallRooms(int id)
+        public ActionResult<ICollection<Room>> GetallRoomsUnderHotel(int id)
         {
             var rooms = _service.GetRoomsUnderHotel(id);
             if (rooms.Count == 0)

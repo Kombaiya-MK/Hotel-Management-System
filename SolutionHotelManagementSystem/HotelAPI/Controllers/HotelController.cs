@@ -9,7 +9,7 @@ namespace HotelAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class HotelController : ControllerBase
     {
         private readonly HotelServices _service;
