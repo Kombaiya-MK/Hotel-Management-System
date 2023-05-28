@@ -8,7 +8,7 @@ namespace RoomsAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    
     public class RoomController : ControllerBase
     {
         private readonly RoomService _service;
@@ -18,7 +18,7 @@ namespace RoomsAPI.Controllers
             _service = service;
         }
 
-        
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -33,7 +33,7 @@ namespace RoomsAPI.Controllers
             }
             return Ok(rooms);
         }
-
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -49,6 +49,7 @@ namespace RoomsAPI.Controllers
             return Ok(rooms);
         }
 
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -113,7 +114,7 @@ namespace RoomsAPI.Controllers
             return BadRequest("Deletion Filed");
         }
 
-
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Room>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

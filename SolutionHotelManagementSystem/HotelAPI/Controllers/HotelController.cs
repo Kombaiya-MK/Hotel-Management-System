@@ -9,7 +9,6 @@ namespace HotelAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
     public class HotelController : ControllerBase
     {
         private readonly HotelServices _service;
@@ -20,6 +19,7 @@ namespace HotelAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(ICollection<HotelDTO>) , StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -33,7 +33,7 @@ namespace HotelAPI.Controllers
             }
             return Ok(hotels);
         }
-
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<HotelDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -48,7 +48,7 @@ namespace HotelAPI.Controllers
             }
             return Ok(hotels);
         }
-
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<HotelDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

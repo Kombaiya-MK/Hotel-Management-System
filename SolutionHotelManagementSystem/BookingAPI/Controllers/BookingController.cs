@@ -8,7 +8,7 @@ namespace BookingAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    
     public class BookingController : ControllerBase
     {
         private readonly BookingService _service;
@@ -18,7 +18,7 @@ namespace BookingAPI.Controllers
             _service = services;
         }
 
-        
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -80,6 +80,7 @@ namespace BookingAPI.Controllers
             return Ok(booking);
         }
 
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(ICollection<Booking>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
