@@ -42,7 +42,7 @@ namespace HotelAPI.Controllers
         public ActionResult<ICollection<HotelDTO>> GetHotelsOnPrice(int max , int min )
         {
             var hotels = _service.GetHotelInPriceRange(max,min);
-            if (max > 0 || min < 0)
+            if (max < 0 || min < 0)
                 return BadRequest("Invalid Input");
             if (hotels.Count == 0)
             {
